@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="limited" default="false"/>
+  <arg name="paused" default="false"/>
+  <arg name="gui" default="true"/>
+
+  <!-- startup simulated world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" default="$(find robotctf_scenario4)/world/robotctf_scenario4.world"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="verbose" value="true"/>
+  </include>
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find robotctf_scenario4)/urdf/robot_description.urdf.xacro'" />
+
+  <!-- push robot_description to factory and spawn robot in gazebo -->
+  <!-- <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot -x 0 -y -0.7 -z 0.62 -Y 0" respawn="false" output="screen" /> -->
+  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot" respawn="false" output="screen" />
+
+  <include file="$(find ur_gazebo)/launch/controller_utils.launch"/>
+
+  <rosparam file="$(find ur_gazebo)/controller/arm_controller_ur10.yaml" command="load"/>
+  <node name="arm_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn arm_controller" respawn="false" output="screen"/>
+
+  <!-- Remap follow_joint_trajectory -->
+  <remap from="/follow_joint_trajectory" to="/arm_controller/follow_joint_trajectory"/>
+
+  <!-- Launch moveit -->
+  <include file="$(find ur10_moveit_config)/launch/move_group.launch">
+    <arg name="limited" default="false"/>
+  </include>
+
+  <arg name="command_args" value="-d $(find ur10_moveit_config)/launch/moveit.rviz" />
+
+  <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false" output="screen"
+    args="$(arg command_args)" >
+    <rosparam command="load" file="$(find ur10_moveit_config)/config/kinematics.yaml"/>
+  </node>
+
+</launch>

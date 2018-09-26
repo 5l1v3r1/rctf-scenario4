@@ -1,0 +1,79 @@
+<?xml version="1.0" ?>
+<robot name="table">
+  <link name="table_link">
+    <inertial>
+      <mass value="0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="table_surface">
+      <origin rpy="0 0 0" xyz="0 0 0.8"/>
+      <geometry>
+        <box size="1.5 0.8 0.03"/>
+      </geometry>
+    </collision>
+    <collision name="table_front_left_leg">
+      <origin rpy="0 0 0" xyz="0.68 0.38 0.4"/>
+      <geometry>
+        <cylinder length="0.8" radius="0.02"/>
+      </geometry>
+    </collision>
+    <collision name="table_front_right_leg">
+      <origin rpy="0 0 0" xyz="0.68 -0.38 0.4"/>
+      <geometry>
+        <cylinder length="0.8" radius="0.02"/>
+      </geometry>
+    </collision>
+    <collision name="table_back_right_leg">
+      <origin rpy="0 0 0" xyz="-0.68 -0.38 0.4"/>
+      <geometry>
+        <cylinder length="0.8" radius="0.02"/>
+      </geometry>
+    </collision>
+    <collision name="table_back_left_leg">
+      <origin rpy="0 0 0" xyz="-0.68 0.38 0.4"/>
+      <geometry>
+        <cylinder length="0.8" radius="0.02"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.8"/>
+      <geometry>
+        <box size="1.5 0.8 0.03"/>
+      </geometry>
+		  <material name="Wood">
+		    <color rgba="1.0 0.0 0.0 1.0"/>
+		    <texture filename="model://ur_description/material/gazebo.material" />
+		  </material>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.68 0.38 0.4"/>
+      <geometry>
+        <cylinder length="0.8" radius="0.02"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.68 -0.38 0.4"/>
+      <geometry>
+        <cylinder length="0.8" radius="0.02"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.68 -0.38 0.4"/>
+      <geometry>
+        <cylinder length="0.8" radius="0.02"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.68 0.38 0.4"/>
+      <geometry>
+        <cylinder length="0.8" radius="0.02"/>
+      </geometry>
+    </visual>
+  </link>
+
+	<gazebo reference="table_link">
+		<material>Gazebo/Wood</material>
+	</gazebo>
+
+</robot>

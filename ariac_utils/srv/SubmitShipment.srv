@@ -1,0 +1,6 @@
+string shipping_box_id
+string shipment_type
+
+---
+bool success
+float32 inspection_result

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="ur10" >
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find robotctf_scenario4)/urdf/common.gazebo.xacro" />
+
+  <!-- ur10 -->
+  <xacro:include filename="$(find robotctf_scenario4)/urdf/ur10.urdf.xacro" />
+
+  <xacro:include filename="$(find robotctf_scenario4)/urdf/table_small.urdf" />
+  <xacro:include filename="$(find robotctf_scenario4)/urdf/workcell_bin.urdf" />
+
+  <!-- arm -->
+  <xacro:ur10_robot prefix="" joint_limited="false"/>
+
+  <link name="world" />
+
+  <joint name="world_table_joint" type="fixed">
+    <parent link="world" />
+    <child link = "table_link" />
+    <origin xyz="0.0 -0.8 0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <joint name="world_joint" type="fixed">
+    <parent link="table_link" />
+    <child link = "base_link" />
+    <origin xyz="0.0 0.2 0.82" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <joint name="worldworkcell_bin_joint" type="fixed">
+    <parent link="table_link" />
+    <child link = "workcell_bin_link" />
+    <origin xyz="0.0 0.8 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
+
+</robot>

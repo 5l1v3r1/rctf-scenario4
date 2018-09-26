@@ -1,0 +1,90 @@
+<?xml version="1.0" ?>
+<robot name="workcell_bin">
+  <link name="workcell_bin_link">
+    <inertial>
+      <mass value="0"/>
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+    <collision name="workcell_bin_center_collision">
+      <origin rpy="0 0 0" xyz="0 0 0.45"/>
+      <geometry>
+        <box size="0.6 0.6 0.55"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.45"/>
+      <geometry>
+        <box size="0.6 0.6 0.55"/>
+      </geometry>
+      <material name="Blue">
+        <color rgba="0.7 0.7 0.7 1.0"/>
+        <texture filename="model://ur_description/material/gazebo.material" />
+      </material>
+    </visual>
+    <collision name="workcell_bin_base">
+      <origin rpy="0  0  0" xyz="0       0       0.10024"/>
+      <geometry>
+        <box size="0.66836 0.66836 0.20049"/>
+      </geometry>
+    </collision>
+    <collision name="workcell_bin_left_wall">
+      <origin rpy="0  0  0" xyz="-0.319    0       0.39544"/>
+      <geometry>
+        <box size="0.003 0.63803 0.79089"/>
+      </geometry>
+    </collision>
+    <collision name="workcell_bin_right_wall">
+      <origin rpy="0  0  0" xyz="0.319    0       0.39544"/>
+      <geometry>
+        <box size="0.003 0.63803 0.79089"/>
+      </geometry>
+    </collision>
+    <collision name="workcell_bin_front_left_wall">
+      <origin rpy="0  0  0" xyz="-0.2533   0.31899  0.39544"/>
+      <geometry>
+        <box size="0.13437 0.003 0.79089"/>
+      </geometry>
+    </collision>
+    <collision name="workcell_bin_front_mid_wall">
+      <origin rpy="0  0  0" xyz="0       0.31899  0.25284"/>
+      <geometry>
+        <box size="0.37226 0.003 0.50569"/>
+      </geometry>
+    </collision>
+    <collision name="workcell_bin_front_right_wall">
+      <origin rpy="0  0  0" xyz="0.2533   0.31899  0.39544"/>
+      <geometry>
+        <box size="0.13437 0.003 0.79089"/>
+      </geometry>
+    </collision>
+    <collision name="workcell_bin_back_left_wall">
+      <origin rpy="0  0  0" xyz="-0.2533  -0.31899  0.39544"/>
+      <geometry>
+        <box size="0.13437 0.003 0.79089"/>
+      </geometry>
+    </collision>
+    <collision name="workcell_bin_back_mid_wall">
+      <origin rpy="0  0  0" xyz="0      -0.31899  0.25284"/>
+      <geometry>
+        <box size="0.37226 0.003 0.50569"/>
+      </geometry>
+    </collision>
+    <collision name="workcell_bin_back_right_wall">
+      <origin rpy="0  0  0" xyz="0.2533  -0.31899  0.39544"/>
+      <geometry>
+        <box size="0.13437 0.003 0.79089"/>
+      </geometry>
+    </collision>
+    <visual name="workcell_bin_visual">
+      <origin rpy="0  0  0" xyz="0  0  0"/>
+      <geometry>
+        <mesh filename="model://workcell_bin/meshes/bin.dae"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <gazebo reference="workcell_bin_link">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+</robot>
