@@ -1,4 +1,4 @@
-# rctf-scemario4
+# rctf-scenario4
 
 The Robotics Capture the Flag (RCTF) is an online playground to challenge robot security from your browser. It is designed to be an online game, available 24/7, launchable through your browser and designed to learn robot hacking step by step.
 
